@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eid Mubarak - Salami</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #2c9a42;
+            --secondary-color: #f8b400;
+            --accent-color: #e74c3c;
+            --light-color: #f9f9f9;
+            --dark-color: #2c3e50;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: var(--dark-color);
+            overflow-x: hidden;
+        }
+        
+        .eid-header {
+            background: linear-gradient(135deg, var(--primary-color), #1e8449);
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .eid-header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: repeating-linear-gradient(
+                45deg,
+                var(--secondary-color),
+                var(--secondary-color) 10px,
+                var(--primary-color) 10px,
+                var(--primary-color) 20px
+            );
+        }
+        
+        .moon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #f8d56b;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #f8d56b, 0 0 40px rgba(248, 213, 107, 0.5);
+            animation: pulse 3s infinite alternate;
+        }
+        
+        .moon::before {
+            content: "";
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 15px;
+            height: 15px;
+            background-color: #f5b041;
+            border-radius: 50%;
+        }
+        
+        .moon::after {
+            content: "";
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            width: 10px;
+            height: 10px;
+            background-color: #f5b041;
+            border-radius: 50%;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .eid-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .eid-title::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            animation: underline 2s forwards 1s;
+        }
+        
+        @keyframes underline {
+            to { transform: scaleX(1); }
+        }
+        
+        .greeting-text {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        .lantern {
+            position: absolute;
+            width: 40px;
+            height: 60px;
+            background-color: var(--accent-color);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(231, 76, 60, 0.7);
+            animation: swing 3s infinite alternate;
+        }
+        
+        .lantern::before {
+            content: "";
+            position: absolute;
+            top: -10px;
+            left: 15px;
+            width: 10px;
+            height: 10px;
+            background-color: var(--secondary-color);
+            border-radius: 50%;
+        }
+        
+        .lantern::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 10px;
+            width: 20px;
+            height: 5px;
+            background-color: var(--secondary-color);
+            border-radius: 5px;
+        }
+        
+        .lantern-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0.2s;
+        }
+        
+        .lantern-2 {
+            top: 30%;
+            right: 15%;
+            animation-delay: 0.5s;
+        }
+        
+        .lantern-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 0.7s;
+        }
+        
+        @keyframes swing {
+            0% { transform: rotate(-5deg); }
+            100% { transform: rotate(5deg); }
+        }
+        
+        .btn-eid {
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeIn 1s forwards 1.5s;
+        }
+        
+        .btn-eid:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            color: var(--dark-color);
+        }
+        
+        .btn-eid::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: 0.5s;
+            z-index: -1;
+        }
+        
+        .btn-eid:hover::before {
+            left: 100%;
+        }
+        
+        .eid-card {
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            overflow: hidden;
+            margin-bottom: 30px;
+            border: none;
+        }
+        
+        .eid-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .eid-card-header {
+            background: linear-gradient(to right, var(--primary-color), #1e8449);
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        .eid-card-body {
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .eid-icon {
+            font-size: 3rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .qr-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .qr-code {
+            width: 200px;
+            height: 200px;
+            margin: 20px auto;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px dashed var(--secondary-color);
+        }
+        
+        .qr-code img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .payment-options {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .payment-option {
+            width: 60px;
+            height: 60px;
+            background-color: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .payment-option:hover {
+            transform: scale(1.1);
+        }
+        
+        .payment-option img {
+            max-width: 80%;
+            max-height: 80%;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: var(--secondary-color);
+            opacity: 0;
+        }
+        
+        .page {
+            display: none;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .eid-footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+        }
+        
+        .eid-footer a {
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .eid-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Animation for the QR page */
+        .qr-page .greeting-text {
+            animation: fadeIn 1s forwards;
+        }
+        
+        .qr-page .qr-container {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 1s forwards 0.5s;
+        }
+        
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .eid-title {
+                font-size: 2.5rem;
+            }
+            
+            .greeting-text {
+                font-size: 1.2rem;
+            }
+            
+            .lantern {
+                width: 30px;
+                height: 45px;
+            }
+            
+            .lantern-1, .lantern-2, .lantern-3 {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Page 1: Eid Greeting -->
+    <div id="greeting-page" class="page active">
+        <div class="eid-header text-center position-relative">
+            <div class="moon"></div>
+            <div class="lantern lantern-1"></div>
+            <div class="lantern lantern-2"></div>
+            <div class="lantern lantern-3"></div>
+            
+            <div class="container py-5">
+                <h1 class="eid-title">Eid Mubarak!</h1>
+                <p class="greeting-text">Wishing you and your family a blessed Eid filled with joy, peace, and prosperity</p>
+                <button id="next-btn" class="btn btn-eid">
+                    Send Eid Salami <i class="fas fa-gift ms-2"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="container my-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="eid-card">
+                        <div class="eid-card-header">
+                            <i class="fas fa-mosque me-2"></i> Eid Prayers
+                        </div>
+                        <div class="eid-card-body">
+                            <div class="eid-icon">
+                                <i class="fas fa-hands-praying"></i>
+                            </div>
+                            <p>May your prayers be answered and your faith strengthened on this blessed day.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="eid-card">
+                        <div class="eid-card-header">
+                            <i class="fas fa-utensils me-2"></i> Eid Feast
+                        </div>
+                        <div class="eid-card-body">
+                            <div class="eid-icon">
+                                <i class="fas fa-drumstick-bite"></i>
+                            </div>
+                            <p>May your tables be filled with delicious food and your hearts with happiness.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="eid-card">
+                        <div class="eid-card-header">
+                            <i class="fas fa-hands-holding-heart me-2"></i> Charity
+                        </div>
+                        <div class="eid-card-body">
+                            <div class="eid-icon">
+                                <i class="fas fa-hand-holding-heart"></i>
+                            </div>
+                            <p>May your generosity bring joy to those in need and blessings to your life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Page 2: QR Code for Salami -->
+    <div id="qr-page" class="page">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h1 class="eid-title">Eid Salami</h1>
+                <p class="greeting-text">Thank you for your generous gift! Scan the QR code below to send your Eid Salami.</p>
+            </div>
+            
+            <div class="qr-container">
+                <h3><i class="fas fa-qrcode me-2"></i> Scan to Pay</h3>
+                <p>Your generosity is greatly appreciated!</p>
+                
+                <div class="qr-code">
+                    <!-- Replace this with your actual QR code image -->
+                    <img src="https://i.postimg.cc/1zjGCfq5/01886481181-2-24-21-PM-Mar-30-2025-png.jpg" alt="QR Code">
+                </div>
+                
+                <p class="mt-3">Or use these payment methods:</p>
+                
+                <div class="payment-options">
+                    <div class="payment-option">
+                        <i class="fab fa-paypal fa-2x" style="color: #003087;"></i>
+                    </div>
+                    <div class="payment-option">
+                        <i class="fas fa-money-bill-wave fa-2x" style="color: #28a745;"></i>
+                    </div>
+                    <div class="payment-option">
+                        <i class="fab fa-cc-visa fa-2x" style="color: #1a1f71;"></i>
+                    </div>
+                    <div class="payment-option">
+                        <i class="fab fa-cc-mastercard fa-2x" style="color: #eb001b;"></i>
+                    </div>
+                </div>
+                
+                <button id="back-btn" class="btn btn-eid mt-4">
+                    <i class="fas fa-arrow-left me-2"></i> Back to Greeting
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="eid-footer">
+        <div class="container">
+            <p>© 2025 Eid Mubarak Salami(Nishat). All rights reserved.</p>
+            <p>Made with <i class="fas fa-heart" style="color: var(--accent-color);"></i> for a blessed Eid</p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Page navigation
+        document.getElementById('next-btn').addEventListener('click', function() {
+            document.getElementById('greeting-page').classList.remove('active');
+            document.getElementById('qr-page').classList.add('active');
+            createConfetti();
+        });
+        
+        document.getElementById('back-btn').addEventListener('click', function() {
+            document.getElementById('qr-page').classList.remove('active');
+            document.getElementById('greeting-page').classList.add('active');
+        });
+        
+        // Confetti effect
+        function createConfetti() {
+            const colors = ['#f8b400', '#e74c3c', '#2c9a42', '#3498db', '#9b59b6'];
+            const container = document.querySelector('.qr-container');
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.top = -10 + 'px';
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                
+                container.appendChild(confetti);
+                
+                const animationDuration = Math.random() * 3 + 2;
+                
+                confetti.style.animation = `
+                    drop ${animationDuration}s linear forwards ${Math.random() * 2}s,
+                    fade ${animationDuration}s linear forwards ${Math.random() * 2}s
+                `;
+                
+                // Create keyframes dynamically
+                const style = document.createElement('style');
+                style.innerHTML = `
+                    @keyframes drop {
+                        to { top: 100%; }
+                    }
+                    @keyframes fade {
+                        0%, 100% { opacity: 0; }
+                        10%, 90% { opacity: 1; }
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Remove confetti after animation
+                setTimeout(() => {
+                    confetti.remove();
+                    style.remove();
+                }, (animationDuration + 2) * 1000);
+            }
+        }
+    </script>
+</body>
+</html>
